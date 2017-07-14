@@ -55,12 +55,13 @@
 	</appender>
 
 	<logger name="com.lynx" level="debug" additivity="false">
-		<appender-ref ref="FILE-AUDIT" />
+<!-- 		<appender-ref ref="FILE-AUDIT" /> -->
 		<appender-ref ref="STDOUT" />
 	</logger>
 
-	<root level="error">
-		<appender-ref ref="FILE-ERROR" />
+	<root level="info">
+		<appender-ref ref="STDOUT" />
+<!-- 		<appender-ref ref="FILE-ERROR" /> -->
 	</root>
 
 </configuration>
