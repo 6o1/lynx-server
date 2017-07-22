@@ -1,4 +1,4 @@
-package com.lynx.domain;
+package com.lynx.domain.enums;
 
 public enum Role {
 	USER, ADMIN

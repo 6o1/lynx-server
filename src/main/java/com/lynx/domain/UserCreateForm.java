@@ -4,6 +4,8 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import com.lynx.domain.enums.Role;
+
 import lombok.Data;
 
 @Data

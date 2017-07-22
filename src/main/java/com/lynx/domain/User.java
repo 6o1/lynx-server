@@ -3,6 +3,8 @@ package com.lynx.domain;
 import org.springframework.data.annotation.Id;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.lynx.domain.enums.Role;
+
 import lombok.Builder;
 import lombok.Data;
 

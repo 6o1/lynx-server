@@ -3,7 +3,7 @@ package com.lynx.service;
 import org.springframework.stereotype.Service;
 
 import com.lynx.domain.CurrentUser;
-import com.lynx.domain.Role;
+import com.lynx.domain.enums.Role;
 
 import lombok.extern.slf4j.Slf4j;
 

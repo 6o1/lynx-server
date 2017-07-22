@@ -2,6 +2,8 @@ package com.lynx.domain;
 
 import org.springframework.security.core.authority.AuthorityUtils;
 
+import com.lynx.domain.enums.Role;
+
 import lombok.Getter;
 
 @Getter
