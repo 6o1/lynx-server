@@ -1,5 +1,7 @@
 package com.lynx.domain;
 
+import java.util.Map;
+
 import org.springframework.data.annotation.Id;
 
 import com.lynx.domain.enums.ContentType;
@@ -21,7 +23,7 @@ public class TaskResult extends LynxBaseCollection {
 
 	private TaskResultCode code;
 
-	private byte[] data;
+	private Map<String, Object> data;
 
 	private ContentType contentType;
 

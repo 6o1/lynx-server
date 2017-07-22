@@ -29,9 +29,9 @@ public enum TaskResultCode {
 		if (id == null) {
 			return null;
 		}
-		for (TaskResultCode position : TaskResultCode.values()) {
-			if (id.equals(position.getId())) {
-				return position;
+		for (TaskResultCode type : TaskResultCode.values()) {
+			if (id.equals(type.getId())) {
+				return type;
 			}
 		}
 		throw new IllegalArgumentException("No matching type for id: " + id);

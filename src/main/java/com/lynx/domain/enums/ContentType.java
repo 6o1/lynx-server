@@ -29,9 +29,9 @@ public enum ContentType {
 		if (id == null) {
 			return null;
 		}
-		for (ContentType position : ContentType.values()) {
-			if (id.equals(position.getId())) {
-				return position;
+		for (ContentType type : ContentType.values()) {
+			if (id.equals(type.getId())) {
+				return type;
 			}
 		}
 		throw new IllegalArgumentException("No matching type for id: " + id);
