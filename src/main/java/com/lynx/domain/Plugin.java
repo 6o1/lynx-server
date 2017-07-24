@@ -2,12 +2,14 @@ package com.lynx.domain;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.lynx.domain.enums.PluginType;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+@Document(collection = "plugin")
 @Data
 @EqualsAndHashCode(callSuper = false)
 public class Plugin extends LynxBaseCollection {

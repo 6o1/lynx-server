@@ -1,8 +1,8 @@
 <mongoChangeLog>
     <changeSet changeId="ChangeSet-1" author="niko">
         <script>
-            db.user.insert({"email" : "user@example.com", "passwordHash" : "$2a$10$UBuTw1z0oPcEMlXQuzeLKem8pSjIzTrIjWDivzIroCiwqwAJjsvGO", "role" : "USER"});
-            db.user.insert({"email" : "admin@example.com", "passwordHash" : "$2a$10$UBuTw1z0oPcEMlXQuzeLKem8pSjIzTrIjWDivzIroCiwqwAJjsvGO", "role" : "ADMIN"});
+            db.user.insert({"email" : "user@example.com", "passwordHash" : "$2a$10$sSyP5TaAZD7l5yXCMQoil.K3ghmRDyBksSHPDNjeJqB7AcIT14kum", "role" : "USER"});
+            db.user.insert({"email" : "admin@example.com", "passwordHash" : "$2a$10$sSyP5TaAZD7l5yXCMQoil.K3ghmRDyBksSHPDNjeJqB7AcIT14kum", "role" : "ADMIN"});
         </script>
     </changeSet>
 </mongoChangeLog>

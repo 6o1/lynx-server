@@ -2,10 +2,12 @@ package com.lynx.domain;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+@Document(collection = "agent")
 @Data
 @EqualsAndHashCode(callSuper = false)
 public class Agent extends LynxBaseCollection {
@@ -15,7 +17,7 @@ public class Agent extends LynxBaseCollection {
 
 	@Indexed(unique = true)
 	private String uid;
-	
+
 	private String hostname;
 
 	private String passwordHash;
@@ -23,7 +25,7 @@ public class Agent extends LynxBaseCollection {
 	private String[] ipAddresses;
 
 	private String[] macAddresses;
-	
+
 	private Boolean deleted;
 
 }
