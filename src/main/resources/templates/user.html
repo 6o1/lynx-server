@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="base_layout">
+<!--/*@thymesVar id="user" type="de.nava.demo.domain.User"*/-->
+<head>
+    <title layout:fragment="title">User details</title>
+</head>
+<body>
+<div layout:fragment="content">
+
+    <h1>User details</h1>
+
+    <p>E-mail: ${user.email}</p>
+
+    <p>Role: ${user.role}</p>
+
+</div>
+</body>
+</html>

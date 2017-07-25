@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="base_layout">
+<!--/*@thymesVar id="_csrf" type="org.springframework.security.web.csrf.CsrfToken"*/-->
+<!--/*@thymesVar id="error" type="java.util.Optional<String>"*/-->
+<head>
+    <title layout:fragment="title">Log in</title>
+</head>
+<body>
+<div layout:fragment="content">
+
+    <h1>Log in</h1>
+
+    <p>You can use: demo@localhost / demo</p>
+
+    <form role="form" th:action="@{/login}" method="post">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+
+        <div>
+            <label for="email">Email address</label>
+            <input type="email" name="email" id="email" required="required" autofocus="autofocus"/>
+        </div>
+        <div>
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" required="required"/>
+        </div>
+        <div>
+            <label for="remember-me">Remember me</label>
+            <input type="checkbox" name="remember-me" id="remember-me"/>
+        </div>
+        <button type="submit">Sign in</button>
+    </form>
+
+    <p th:if="${error.isPresent()}">The email or password you have entered is invalid, try again.</p>
+
+</div>
+</body>
+</html>
