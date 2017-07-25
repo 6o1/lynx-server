@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.Map;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.lynx.domain.enums.TaskResultCode;
@@ -19,10 +20,11 @@ public class Task extends LynxBaseCollection {
 	@Id
 	private String id;
 
-	private String pluginId;
+	private Plugin plugin;
 
 	private String label;
 
+	@Indexed
 	private String code;
 
 	private String cronExpression;

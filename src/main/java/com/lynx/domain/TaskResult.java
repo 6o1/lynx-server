@@ -19,11 +19,11 @@ public class TaskResult extends LynxBaseCollection {
 	@Id
 	private String id;
 
-	private String agentId;
+	private Agent agent;
 
-	private String taskId;
+	private Task task;
 
-	private TaskResultCode code;
+	private TaskResultCode status;
 
 	private Map<String, Object> data;
 

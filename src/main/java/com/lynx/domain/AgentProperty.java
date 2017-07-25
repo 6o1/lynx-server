@@ -1,6 +1,7 @@
 package com.lynx.domain;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.Data;
@@ -14,8 +15,9 @@ public class AgentProperty extends LynxBaseCollection {
 	@Id
 	private String id;
 
-	private String agentId;
+	private String refAgentId;
 
+	@Indexed
 	private String propertyName;
 
 	private String propertyValue;

@@ -1,6 +1,7 @@
 package com.lynx.domain;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.lynx.domain.enums.SessionEvent;
@@ -16,8 +17,9 @@ public class AgentUserSession extends LynxBaseCollection {
 	@Id
 	private String id;
 
-	private String agentId;
+	private String refAgentId;
 
+	@Indexed
 	private String username;
 
 	private SessionEvent event;
