@@ -7,7 +7,7 @@ import com.fasterxml.jackson.databind.Module;
 import com.fasterxml.jackson.module.afterburner.AfterburnerModule;
 
 @Configuration
-public class ApplicationConfig {
+public class JacksonConfig {
 
 	@Bean
 	public Module afterburnerModule() {
