@@ -90,6 +90,11 @@
 			<artifactId>spring-session</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>com.hazelcast</groupId>
+			<artifactId>hazelcast-all</artifactId>
+			<version>3.8.3</version>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
@@ -153,9 +158,14 @@
 					<forceJavacCompilerUse>true</forceJavacCompilerUse>
 					<!-- maven-compiler-plugin defaults to targeting Java 5, but our javac 
 						only supports >=6 -->
-					<source>8</source>
-					<target>8</target>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
 					<showWarnings>true</showWarnings>
+					<encoding>UTF-8</encoding>
+					<optimize>true</optimize>
+					<compilerArgs>
+						<arg>-Xlint:all</arg>
+					</compilerArgs>
 				</configuration>
 				<dependencies>
 					<dependency>
