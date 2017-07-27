@@ -9,7 +9,7 @@
 	<packaging>war</packaging>
 
 	<name>Lynx Server</name>
-	<description>Linux Management and Monitoring</description>
+	<description>Lynx :: System Management and Monitoring</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -99,9 +99,8 @@
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.webjars</groupId>
-			<artifactId>bootstrap</artifactId>
-			<version>3.3.7</version>
+			<groupId>org.thymeleaf.extras</groupId>
+			<artifactId>thymeleaf-extras-springsecurity4</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -119,7 +118,6 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<optional>true</optional>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -154,10 +152,6 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.3</version><!--$NO-MVN-MAN-VER$ -->
 				<configuration>
-					<compilerId>javac-with-errorprone</compilerId>
-					<forceJavacCompilerUse>true</forceJavacCompilerUse>
-					<!-- maven-compiler-plugin defaults to targeting Java 5, but our javac 
-						only supports >=6 -->
 					<source>${java.version}</source>
 					<target>${java.version}</target>
 					<showWarnings>true</showWarnings>
@@ -167,20 +161,6 @@
 						<arg>-Xlint:all</arg>
 					</compilerArgs>
 				</configuration>
-				<dependencies>
-					<dependency>
-						<groupId>org.codehaus.plexus</groupId>
-						<artifactId>plexus-compiler-javac-errorprone</artifactId>
-						<version>2.8</version>
-					</dependency>
-					<!-- override plexus-compiler-javac-errorprone's dependency on Error 
-						Prone with the latest version -->
-					<dependency>
-						<groupId>com.google.errorprone</groupId>
-						<artifactId>error_prone_core</artifactId>
-						<version>2.0.21</version>
-					</dependency>
-				</dependencies>
 			</plugin>
 		</plugins>
 		<pluginManagement>
