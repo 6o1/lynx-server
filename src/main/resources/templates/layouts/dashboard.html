@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="tr" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<object th:include="fragments/head :: head" th:remove="tag"></object>
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+	<div class="wrapper">
+
+		<!-- Header -->
+		<object th:include="fragments/header :: header" th:remove="tag"></object>
+
+		<!-- Sidebar menu -->
+		<object th:include="fragments/menu :: menu" th:remove="tag"></object>
+
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+			<!-- Content Header (Page header) -->
+			<section class="content-header">
+				<h1>
+					Dashboard <small>Version 2.0</small>
+				</h1>
+				<ol class="breadcrumb">
+					<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+					<li class="active">Dashboard</li>
+				</ol>
+			</section>
+
+			<!-- Main content -->
+			<section class="content">
+				<div layout:fragment="content"></div>
+			</section>
+
+		</div>
+
+		<!-- Footer -->		
+		<object th:include="fragments/footer :: footer" th:remove="tag"></object>
+		
+		<!-- Control sidebar -->
+		<object th:include="fragments/control-sidebar :: control-sidebar" th:remove="tag"></object>
+	</div>
+
+	<!-- Scripts -->
+	<object th:include="fragments/scripts :: scripts" th:remove="tag"></object>
+
+</body>
+</html>
