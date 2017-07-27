@@ -1,38 +1,60 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
-      layout:decorator="base_layout">
+<html lang="tr" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
 <!--/*@thymesVar id="_csrf" type="org.springframework.security.web.csrf.CsrfToken"*/-->
 <!--/*@thymesVar id="error" type="java.util.Optional<String>"*/-->
 <head>
-    <title layout:fragment="title">Log in</title>
+	<object th:include="fragments/head :: head" th:remove="tag"></object>
 </head>
-<body>
-<div layout:fragment="content">
-
-    <h1>Log in</h1>
-
-    <p>You can use: demo@localhost / demo</p>
-
-    <form role="form" th:action="@{/login}" method="post">
-        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-
-        <div>
-            <label for="email">Email address</label>
-            <input type="email" name="email" id="email" required="required" autofocus="autofocus"/>
+<body class="hold-transition login-page">
+<div class="login-box">
+  <div class="login-logo">
+    <a href="index.html"><b>Lynx</b></a>
+  </div>
+  <!-- /.login-logo -->
+  <div class="login-box-body">
+    <p class="login-box-msg">Sign in to start your session</p>
+    <form th:action="@{/login}" method="post">
+      <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+      <div class="form-group has-feedback">
+        <input type="email" name="email" id="email" required="required" class="form-control" placeholder="Email" autofocus="autofocus" />
+        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+      </div>
+      <div class="form-group has-feedback">
+        <input type="password" name="password" id="password" required="required" class="form-control" placeholder="Password" />
+        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+      </div>
+      <div class="row">
+        <div class="col-xs-8">
+          <div class="checkbox icheck">
+            <label>
+              <input type="checkbox"/> Remember Me
+            </label>
+          </div>
         </div>
-        <div>
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password" required="required"/>
+        <!-- /.col -->
+        <div class="col-xs-4">
+          <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
         </div>
-        <div>
-            <label for="remember-me">Remember me</label>
-            <input type="checkbox" name="remember-me" id="remember-me"/>
-        </div>
-        <button type="submit">Sign in</button>
+        <!-- /.col -->
+      </div>
     </form>
 
-    <p th:if="${error.isPresent()}">The email or password you have entered is invalid, try again.</p>
-
+    <a href="#">I forgot my password</a><br/>
+  </div>
+  <!-- /.login-box-body -->
 </div>
+<!-- /.login-box -->
+
+<object th:include="fragments/scripts :: scripts" th:remove="tag"></object>
+<script>
+  $(function () {
+    $('input').iCheck({
+      checkboxClass: 'icheckbox_square-blue',
+      radioClass: 'iradio_square-blue',
+      increaseArea: '20%' // optional
+    });
+  });
+</script>
 </body>
 </html>
