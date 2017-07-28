@@ -9,10 +9,10 @@
 	<div class="wrapper">
 
 		<!-- Header -->
-		<object th:include="fragments/header :: header" th:remove="tag"></object>
+		<object th:replace="fragments/header :: header"></object>
 
 		<!-- Sidebar menu -->
-		<object th:include="fragments/menu :: menu" th:remove="tag"></object>
+		<object th:replace="fragments/menu :: menu"></object>
 
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper">
@@ -35,10 +35,10 @@
 		</div>
 
 		<!-- Footer -->		
-		<object th:include="fragments/footer :: footer" th:remove="tag"></object>
+		<object th:replace="fragments/footer :: footer"></object>
 		
 		<!-- Control sidebar -->
-		<object th:include="fragments/control-sidebar :: control-sidebar" th:remove="tag"></object>
+		<object th:replace="fragments/control-sidebar :: control-sidebar"></object>
 	</div>
 
 	<!-- Scripts -->
