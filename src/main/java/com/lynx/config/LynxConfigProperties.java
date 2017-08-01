@@ -25,6 +25,7 @@ public class LynxConfigProperties {
 
 	@Length(min = 2, max = 5, message = "Locale value must conform to the IETF BCP 47 standard.")
 	private String locale;
+	private String dateFormat;
 	private String sendInstallationInfo;
 	private FileServer fileServer;
 	private Mail mail;
