@@ -5,7 +5,7 @@ import java.util.Date;
 import lombok.Data;
 
 @Data
-public class LynxBaseCollection {
+public abstract class LynxBaseCollection {
 
 	private Date dateCreated;
 

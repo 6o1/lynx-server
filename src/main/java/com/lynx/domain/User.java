@@ -1,36 +1,45 @@
 package com.lynx.domain;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import java.util.Set;
 
-import com.lynx.domain.enums.Role;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Document(collection = "user")
 @Data
 @Builder
-public class User {
+@EqualsAndHashCode(callSuper = false)
+public class User extends LynxBaseCollection {
 
 	@Id
 	private String id;
 
+	@Indexed(unique = true)
 	private String email;
+
+	private String firstName;
+
+	private String lastName;
+
+	private String phone;
+
+	private String title;
 
 	private String passwordHash;
 
-	private Role role;
+	private Boolean enabled;
 
-	public static User build(String email, String plainPassword, Role role) {
-		return builder().email(email).passwordHash(new BCryptPasswordEncoder().encode(plainPassword)).role(role)
-				.build();
-	}
+	private Set<Role> roles;
 
 	@Override
 	public String toString() {
 		return "User{" + "id=" + id + ", email='" + email.replaceFirst("@.*", "@***") + ", passwordHash='"
-				+ passwordHash.substring(0, 10) + ", role=" + role + '}';
+				+ passwordHash.substring(0, 10) + ", role=" + roles.toString() + '}';
 	}
+
 }

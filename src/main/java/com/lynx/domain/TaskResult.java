@@ -8,11 +8,13 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import com.lynx.domain.enums.ContentType;
 import com.lynx.domain.enums.TaskResultCode;
 
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Document(collection = "taskresult")
 @Data
+@Builder
 @EqualsAndHashCode(callSuper = false)
 public class TaskResult extends LynxBaseCollection {
 
