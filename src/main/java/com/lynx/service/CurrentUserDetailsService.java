@@ -14,8 +14,8 @@ import org.springframework.stereotype.Service;
 
 import com.lynx.domain.CurrentUser;
 import com.lynx.domain.Privilege;
-import com.lynx.domain.Role;
 import com.lynx.domain.User;
+import com.lynx.domain.enums.Role;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -34,19 +34,13 @@ public class CurrentUserDetailsService implements org.springframework.security.c
 		log.debug("Authenticating user with email={}", email.replaceFirst("@.*", "@***"));
 		User user = userService.getUserByEmail(email).orElseThrow(
 				() -> new UsernameNotFoundException(String.format("User with email=%s was not found", email)));
-		return new CurrentUser(user, getAuthorities(user.getRoles()));
+		return new CurrentUser(user, getAuthorities(user.getRole(), user.getPrivileges()));
 	}
 
-	private Collection<? extends GrantedAuthority> getAuthorities(Set<Role> roles) {
+	private Collection<? extends GrantedAuthority> getAuthorities(Role role, Set<Privilege> privileges) {
 		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-		List<Privilege> privileges = new ArrayList<>();
-		for (Role role : roles) {
-			// Add role authority:
-			authorities.add(new SimpleGrantedAuthority(ROLE_PREFIX + role.getName()));
-			privileges.addAll(role.getPrivileges());
-		}
+		authorities.add(new SimpleGrantedAuthority(ROLE_PREFIX + role.toString()));
 		for (Privilege privilege : privileges) {
-			// Add privilege authority:
 			authorities.add(new SimpleGrantedAuthority(PRIVILEGE_PREFIX + privilege.getName()));
 		}
 		return authorities;

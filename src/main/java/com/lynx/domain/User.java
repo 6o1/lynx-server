@@ -5,6 +5,9 @@ import java.util.Set;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import com.lynx.domain.enums.Role;
 
 import lombok.Builder;
 import lombok.Data;
@@ -34,12 +37,21 @@ public class User extends LynxBaseCollection {
 
 	private Boolean enabled;
 
-	private Set<Role> roles;
+	private Role role;
+
+	private Set<Privilege> privileges;
+
+	public static User build(String email, String firstName, String lastName, String phone, String title,
+			String plainPassword, Role role, Set<Privilege> privileges) {
+		return builder().email(email).firstName(firstName).lastName(lastName).phone(phone).title(title)
+				.passwordHash(new BCryptPasswordEncoder().encode(plainPassword)).role(role).privileges(privileges)
+				.build();
+	}
 
 	@Override
 	public String toString() {
 		return "User{" + "id=" + id + ", email='" + email.replaceFirst("@.*", "@***") + ", passwordHash='"
-				+ passwordHash.substring(0, 10) + ", role=" + roles.toString() + '}';
+				+ passwordHash.substring(0, 10) + ", role=" + role + '}';
 	}
 
 }

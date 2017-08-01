@@ -8,7 +8,6 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
@@ -21,12 +20,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.lynx.domain.Plugin;
 import com.lynx.domain.Privilege;
-import com.lynx.domain.Role;
 import com.lynx.domain.User;
 import com.lynx.domain.validator.UserFormValidator;
 import com.lynx.form.PluginForm;
 import com.lynx.form.PrivilegeForm;
-import com.lynx.form.RoleForm;
 import com.lynx.form.UserForm;
 import com.lynx.service.UserService;
 
@@ -50,7 +47,7 @@ public class UserController {
 		binder.addValidators(formValidator);
 	}
 
-	@PreAuthorize("@currentUserServiceImpl.canAccessUser(principal, #id)")
+	// @PreAuthorize("@currentUserServiceImpl.canAccessUser(principal, #id)")
 	@RequestMapping("/user/{id}")
 	public ModelAndView getUserPage(@PathVariable String id) {
 		log.debug("Getting user page for user={}", id);
@@ -58,14 +55,14 @@ public class UserController {
 				.orElseThrow(() -> new NoSuchElementException(String.format("User=%s not found", id))));
 	}
 
-	@PreAuthorize("hasPrivilege('READ_asdas')")
+	// @PreAuthorize("hasPrivilege('READ_asdas')")
 	@RequestMapping(value = "/user/create", method = RequestMethod.GET)
 	public ModelAndView getUserCreatePage() {
 		log.debug("Getting user create form");
 		return new ModelAndView("user_create", "form", new UserForm());
 	}
 
-	@PreAuthorize("hasAuthority('ADMIN')")
+	// @PreAuthorize("hasAuthority('ADMIN')")
 	@RequestMapping(value = "/user/create", method = RequestMethod.POST)
 	public String handleUserCreateForm(@Valid @ModelAttribute("form") UserForm form, BindingResult bindingResult) {
 		log.debug("Processing user create form={}, bindingResult={}", form, bindingResult);
@@ -87,30 +84,22 @@ public class UserController {
 		// everything fine redirect to list
 		return "redirect:/users";
 	}
-	
-    @RequestMapping("/users")
-    public ModelAndView getUsersPage() {
-        log.debug("Getting users page");
-        return new ModelAndView("users", "users", userService.getAllUsers());
-    }
+
+	@RequestMapping("/users")
+	public ModelAndView getUsersPage() {
+		log.debug("Getting users page");
+		return new ModelAndView("users", "users", userService.getAllUsers());
+	}
 
 	private User convertToEntity(UserForm userForm) {
-		Set<Role> roles = new HashSet<Role>();
-		for (RoleForm role : userForm.getRoles()) {
-			Set<Privilege> privileges = new HashSet<Privilege>();
-			for (PrivilegeForm privilege : role.getPrivileges()) {
-				PluginForm plugin = privilege.getProvider();
-				privileges.add(Privilege.builder().id(privilege.getId()).name(privilege.getName())
-						.provider(Plugin.builder().id(plugin.getId()).code(plugin.getCode())
-								.version(plugin.getVersion()).type(plugin.getType()).active(plugin.getActive())
-								.deleted(plugin.getDeleted()).build())
-						.build());
-			}
-			roles.add(Role.builder().id(role.getId()).name(role.getName()).privileges(privileges).build());
+		Set<Privilege> privileges = new HashSet<Privilege>();
+		for (PrivilegeForm privilegeForm : userForm.getPrivileges()) {
+			PluginForm pluginForm = privilegeForm.getProvider();
+			privileges.add(Privilege.build(privilegeForm.getName(), pluginForm == null ? null
+					: Plugin.build(pluginForm.getCode(), pluginForm.getVersion(), pluginForm.getType())));
 		}
-		return User.builder().id(userForm.getId()).email(userForm.getEmail()).firstName(userForm.getFirstName())
-				.lastName(userForm.getLastName()).phone(userForm.getPhone()).title(userForm.getTitle())
-				.passwordHash(userForm.getPassword()).enabled(userForm.getEnabled()).roles(roles).build();
+		return User.build(userForm.getEmail(), userForm.getFirstName(), userForm.getLastName(), userForm.getPhone(),
+				userForm.getTitle(), userForm.getPassword(), userForm.getRole(), privileges);
 	}
 
 }

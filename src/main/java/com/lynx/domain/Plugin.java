@@ -30,4 +30,8 @@ public class Plugin extends LynxBaseCollection {
 
 	private Boolean deleted;
 
+	public static Plugin build(String code, String version, PluginType type) {
+		return builder().code(code).version(version).type(type).active(true).deleted(false).build();
+	}
+
 }

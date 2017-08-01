@@ -4,6 +4,8 @@ import java.util.Collection;
 
 import org.springframework.security.core.GrantedAuthority;
 
+import com.lynx.domain.enums.Role;
+
 import lombok.Getter;
 
 @Getter
@@ -20,6 +22,10 @@ public class CurrentUser extends org.springframework.security.core.userdetails.U
 
 	public String getId() {
 		return user.getId();
+	}
+
+	public Role getRole() {
+		return user.getRole();
 	}
 
 	@Override

@@ -22,4 +22,8 @@ public class Privilege extends LynxBaseCollection {
 
 	private Plugin provider;
 
+	public static Privilege build(String name, Plugin provider) {
+		return builder().name(name).provider(provider).build();
+	}
+
 }

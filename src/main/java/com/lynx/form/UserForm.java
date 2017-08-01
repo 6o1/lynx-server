@@ -9,6 +9,8 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import com.lynx.domain.enums.Role;
+
 @Data
 @EqualsAndHashCode(callSuper = false)
 public class UserForm extends LynxBaseForm {
@@ -35,16 +37,21 @@ public class UserForm extends LynxBaseForm {
 	private String phone;
 
 	private String title;
-	
+
+	@NotNull
 	private Boolean enabled;
 
 	@NotNull
-	private Set<RoleForm> roles;
+	private Role role = Role.USER;
+
+	@NotNull
+	private Set<PrivilegeForm> privileges;
 
 	@Override
 	public String toString() {
 		return "UserForm [id=" + id + ", email=" + email.replaceFirst("@.*", "@***") + ", firstName=" + firstName
-				+ ", lastName=" + lastName + ", phone=" + phone + ", title=" + title + ", roles=" + roles + "]";
+				+ ", lastName=" + lastName + ", phone=" + phone + ", title=" + title + ", role=" + role
+				+ ", privileges=" + privileges + "]";
 	}
 
 }
