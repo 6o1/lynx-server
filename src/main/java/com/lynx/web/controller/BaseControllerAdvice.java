@@ -9,18 +9,18 @@ import com.lynx.domain.CurrentUser;
 
 @ControllerAdvice
 public class BaseControllerAdvice {
-	
-    @Value("${info.app.version}")
-    private String applicationVersion;
 
-    @ModelAttribute("currentUser")
-    public CurrentUser getCurrentUser(Authentication authentication) {
-        return (authentication == null) ? null : (CurrentUser) authentication.getPrincipal();
-    }
+	@Value("${info.app.version}")
+	private String applicationVersion;
 
-    @ModelAttribute("applicationVersion")
-    public String getApplicationVersion() {
-        return applicationVersion;
-    }
+	@ModelAttribute("currentUser")
+	public CurrentUser getCurrentUser(Authentication authentication) {
+		return (authentication == null) ? null : (CurrentUser) authentication.getPrincipal();
+	}
+
+	@ModelAttribute("applicationVersion")
+	public String getApplicationVersion() {
+		return applicationVersion;
+	}
 
 }
