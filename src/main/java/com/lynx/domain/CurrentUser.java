@@ -16,7 +16,7 @@ public class CurrentUser extends org.springframework.security.core.userdetails.U
 	private User user;
 
 	public CurrentUser(User user, Collection<? extends GrantedAuthority> authorities) {
-		super(user.getEmail(), user.getPasswordHash(), user.getEnabled(), true, true, true, authorities);
+		super(user.getEmail(), user.getPasswordHash(), true, true, true, true, authorities);
 		this.user = user;
 	}
 

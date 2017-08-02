@@ -6,10 +6,10 @@
 	<groupId>com.lynx</groupId>
 	<artifactId>lynx-server</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>${packaging.type}</packaging>
 
 	<name>Lynx</name>
-	<description>Lynx :: System Management and Monitoring</description>
+	<description>Lynx :: Client Management and Monitoring Platform</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -213,5 +213,22 @@
 		</pluginManagement>
 	</build>
 
+	<profiles>
+		<profile>
+			<id>webapp</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<packaging.type>war</packaging.type>
+			</properties>
+		</profile>
+		<profile>
+			<id>batch</id>
+			<properties>
+				<packaging.type>jar</packaging.type>
+			</properties>
+		</profile>
+	</profiles>
 
 </project>

@@ -13,7 +13,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.lynx.domain.CurrentUser;
-import com.lynx.domain.Privilege;
 import com.lynx.domain.User;
 import com.lynx.domain.enums.Role;
 
@@ -37,11 +36,11 @@ public class CurrentUserDetailsService implements org.springframework.security.c
 		return new CurrentUser(user, getAuthorities(user.getRole(), user.getPrivileges()));
 	}
 
-	private Collection<? extends GrantedAuthority> getAuthorities(Role role, Set<Privilege> privileges) {
+	private Collection<? extends GrantedAuthority> getAuthorities(Role role, Set<String> privileges) {
 		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 		authorities.add(new SimpleGrantedAuthority(ROLE_PREFIX + role.toString()));
-		for (Privilege privilege : privileges) {
-			authorities.add(new SimpleGrantedAuthority(PRIVILEGE_PREFIX + privilege.getName()));
+		for (String privilege : privileges) {
+			authorities.add(new SimpleGrantedAuthority(PRIVILEGE_PREFIX + privilege));
 		}
 		return authorities;
 	}

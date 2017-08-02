@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layouts/dashboard">
+<!--/*@thymesVar id="users" type="java.util.List<de.nava.demo.domain.User>"*/-->
+<head>
+	<title layout:fragment="title">Lynx :: Kullanıcı Yönetimi</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<h1>List of Users</h1>
+		<table>
+			<thead>
+				<tr>
+					<th>E-mail</th>
+					<th>Role</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="user : ${users}">
+					<td><a th:href="${'/user/' + user.id}" th:text="${user.email}"></a></td>
+					<td th:text="${user.role}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

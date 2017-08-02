@@ -1,19 +1,12 @@
 package com.lynx.domain;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import lombok.Getter;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+@Getter
+public class Client {
 
-@Document(collection = "agent")
-@Data
-@EqualsAndHashCode(callSuper = false)
-public class Client extends LynxBaseCollection {
-	
-	@Id
-	private String id;
-	
 	private Boolean up;
+
+	// TODO other fields...
 
 }

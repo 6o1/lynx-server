@@ -24,12 +24,12 @@
       <ul class="sidebar-menu">
         <li class="header">Menü</li>
         <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="#"><i class="fa fa-dashboard"></i> <span>Yönetim Paneli</span></a></li>
-        <li><a href="#"><i class="fa fa-cloud"></i> <span>Ağ Envanteri</span></a></li>
-        <li><a href="#"><i class="fa fa-terminal"></i> <span>Görev Çalıştır</span></a></li>
-        <li><a href="#"><i class="fa fa-tasks"></i> <span>Çalıştırılan Görevler</span></a></li>
-        <li><a href="#"><i class="fa fa-info"></i> <span>Sonuçlar</span></a></li>
-        <li><a href="#"><i class="fa fa-line-chart"></i> <span>Raporlar</span></a></li>
+        <li class="active"><a href="/index"><i class="fa fa-dashboard"></i> <span>Yönetim Paneli</span></a></li>
+        <li><a href="/networkinventory/list"><i class="fa fa-cloud"></i> <span>Ağ Envanteri</span></a></li>
+        <li><a href="/task/execute"><i class="fa fa-terminal"></i> <span>Görev Çalıştır</span></a></li>
+        <li><a href="/task/list"><i class="fa fa-tasks"></i> <span>Çalıştırılan Görevler</span></a></li>
+        <li><a href="/taskresult/list"><i class="fa fa-info"></i> <span>Sonuçlar</span></a></li>
+        <li><a href="/report/list"><i class="fa fa-line-chart"></i> <span>Raporlar</span></a></li>
         
         <!-- Only for Admin! -->
         <li class="treeview">
@@ -39,16 +39,16 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#">Sistem Güncelleme</a></li>
-            <li><a href="#">Sistem Yedekleme</a></li>
-            <li><a href="#">Yapılandırma Ayarları</a></li>
-            <li><a href="#">Entegrasyon</a></li>
+            <li><a href="/sysupdate/list">Sistem Güncelleme</a></li>
+            <li><a href="/sysbackup/list">Sistem Yedekleme</a></li>
+            <li><a href="/sysconfig/list">Yapılandırma Ayarları</a></li>
+            <li><a href="/integration/list">Entegrasyon</a></li>
           </ul>
         </li>
-        <li><a href="#"><i class="fa fa-users"></i> <span>Kullanıcı Yönetimi</span></a></li>
+        <li><a href="/user/list"><i class="fa fa-users"></i> <span>Kullanıcı Yönetimi</span></a></li>
         <!--  -->
         
-        <li><a href="#"><i class="fa fa-question"></i> <span>Yardım</span></a></li>
+        <li><a href="/help"><i class="fa fa-question"></i> <span>Yardım</span></a></li>
       </ul>
       <!-- /.sidebar-menu -->
     </section>

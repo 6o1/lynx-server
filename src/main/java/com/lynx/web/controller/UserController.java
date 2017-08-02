@@ -1,8 +1,6 @@
 package com.lynx.web.controller;
 
-import java.util.HashSet;
 import java.util.NoSuchElementException;
-import java.util.Set;
 
 import javax.validation.Valid;
 
@@ -18,14 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.lynx.domain.Plugin;
-import com.lynx.domain.Privilege;
 import com.lynx.domain.User;
 import com.lynx.domain.validator.UserFormValidator;
-import com.lynx.form.PluginForm;
-import com.lynx.form.PrivilegeForm;
 import com.lynx.form.UserForm;
 import com.lynx.service.UserService;
+import com.lynx.util.LynxUtils;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -91,15 +86,10 @@ public class UserController {
 		return new ModelAndView("users", "users", userService.getAllUsers());
 	}
 
-	private User convertToEntity(UserForm userForm) {
-		Set<Privilege> privileges = new HashSet<Privilege>();
-		for (PrivilegeForm privilegeForm : userForm.getPrivileges()) {
-			PluginForm pluginForm = privilegeForm.getProvider();
-			privileges.add(Privilege.build(privilegeForm.getName(), pluginForm == null ? null
-					: Plugin.build(pluginForm.getCode(), pluginForm.getVersion(), pluginForm.getType())));
-		}
-		return User.build(userForm.getEmail(), userForm.getFirstName(), userForm.getLastName(), userForm.getPhone(),
-				userForm.getTitle(), userForm.getPassword(), userForm.getRole(), privileges);
+	private User convertToEntity(UserForm form) {
+		return User.builder().email(form.getEmail()).firstName(form.getFirstName()).lastName(form.getLastName())
+				.phone(form.getPhone()).title(form.getTitle()).passwordHash(LynxUtils.encode(form.getPassword()))
+				.privileges(form.getPrivileges()).build();
 	}
 
 }

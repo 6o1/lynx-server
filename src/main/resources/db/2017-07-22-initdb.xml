@@ -1,24 +1,58 @@
 <mongoChangeLog>
-    <changeSet changeId="ChangeSet-1" author="emrekgn">
-        <script>
-        	// Clear collections
-        	db.userprivilege.remove({});
-        	db.userrole.remove({});
-        	db.user.remove({});
-        
-        	// Privileges
-        	db.userprivilege.insert({"name": "PRIV_USER_CREATE", "provider": {}});
-        	db.userprivilege.insert({"name": "PRIV_USER_READ", "provider": {}});
-        	db.userprivilege.insert({"name": "PRIV_USER_UPDATE", "provider": {}});
-        	db.userprivilege.insert({"name": "PRIV_USER_DELETE", "provider": {}});
-        	db.userprivilege.insert({"name": "PRIV_TASK_CREATE", "provider": {}});
-        	db.userprivilege.insert({"name": "PRIV_TASK_READ", "provider": {}});
-        	db.userprivilege.insert({"name": "PRIV_TASK_UPDATE", "provider": {}});
-        	db.userprivilege.insert({"name": "PRIV_TASK_DELETE", "provider": {}});
-        	
-        	// Users
-            db.user.insert({"email" : "user@example.com", "firstName": "Test", "lastName": "Test", "passwordHash" : "$2a$10$sSyP5TaAZD7l5yXCMQoil.K3ghmRDyBksSHPDNjeJqB7AcIT14kum", "enabled": true, "role": "USER"});
-            db.user.insert({"email" : "admin@example.com", "firstName": "Admin", "lastName": "Admin", "passwordHash" : "$2a$10$sSyP5TaAZD7l5yXCMQoil.K3ghmRDyBksSHPDNjeJqB7AcIT14kum", "enabled": true, "role": "ADMIN"});
-        </script>
-    </changeSet>
+	<changeSet changeId="ChangeSet-1" author="emrekgn">
+		<script>
+			// Clear collections
+			db.user.drop();
+			db.plugin.drop();
+
+			// Core plugin and privileges
+			db.plugin.insert({ 
+				"code": "core",
+				"type": "CORE",
+				"enabled": "true",
+				"privileges": [
+					"PRIV_USER_CREATE",
+					"PRIV_USER_READ",
+					"PRIV_USER_UPDATE",
+					"PRIV_USER_DELETE",
+					"PRIV_TASK_CREATE",
+					"PRIV_TASK_READ"
+					"PRIV_TASK_UPDATE"
+					"PRIV_TASK_DELETE"
+				]
+			});
+
+			// Admin user
+			db.user.insert({ 
+				"email" : "admin@example.com", 
+				"firstName": "Admin",
+				"lastName": "Admin", 
+				"passwordHash" : "$2a$10$sSyP5TaAZD7l5yXCMQoil.K3ghmRDyBksSHPDNjeJqB7AcIT14kum",
+				"enabled": true, 
+				"role": "ADMIN", 
+				"privileges": [
+					"PRIV_USER_CREATE",
+					"PRIV_USER_READ",
+					"PRIV_USER_UPDATE",
+					"PRIV_USER_DELETE"
+				]
+			});
+
+			// Test user
+			db.user.insert({ 
+				"email" : "user@example.com", 
+				"firstName": "Test", 
+				"lastName": "Test", 
+				"passwordHash" : "$2a$10$sSyP5TaAZD7l5yXCMQoil.K3ghmRDyBksSHPDNjeJqB7AcIT14kum",
+				"enabled": true, 
+				"role": "USER", 
+				"privileges": [
+					"PRIV_TASK_CREATE",
+					"PRIV_TASK_READ"
+					"PRIV_TASK_UPDATE"
+					"PRIV_TASK_DELETE"
+				] 
+			});
+		</script>
+	</changeSet>
 </mongoChangeLog>

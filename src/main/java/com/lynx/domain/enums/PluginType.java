@@ -1,5 +1,5 @@
 package com.lynx.domain.enums;
 
 public enum PluginType {
-	SYSTEM, THIRD_PARTY
+	CORE, THIRD_PARTY
 }

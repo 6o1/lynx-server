@@ -45,7 +45,7 @@ public class UserForm extends LynxBaseForm {
 	private Role role = Role.USER;
 
 	@NotNull
-	private Set<PrivilegeForm> privileges;
+	private Set<String> privileges;
 
 	@Override
 	public String toString() {
