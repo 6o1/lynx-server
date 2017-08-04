@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.lynx.domain.User;
+import com.lynx.domain.enums.Role;
 import com.lynx.domain.validator.UserFormValidator;
 import com.lynx.form.UserForm;
 import com.lynx.service.UserService;
@@ -89,7 +90,7 @@ public class UserController {
 	private User convertToEntity(UserForm form) {
 		return User.builder().email(form.getEmail()).firstName(form.getFirstName()).lastName(form.getLastName())
 				.phone(form.getPhone()).title(form.getTitle()).passwordHash(LynxUtils.encode(form.getPassword()))
-				.privileges(form.getPrivileges()).build();
+				.deleted(false).role(Role.USER).privileges(form.getPrivileges()).build();
 	}
 
 }

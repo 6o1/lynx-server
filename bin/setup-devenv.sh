@@ -45,3 +45,11 @@ echo "Finished installing Lynx components."
 # Lombok
 #
 echo "Starting Lombok installer..."
+
+#
+# Heroku
+#
+echo "Installing Heroku CLI..."
+sudo add-apt-repository "deb https://cli-assets.heroku.com/branches/stable/apt ./"
+curl -L https://cli-assets.heroku.com/apt/release.key | sudo apt-key add -
+apt-get update && apt-get install -y heroku
