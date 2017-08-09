@@ -16,8 +16,8 @@
 					"PRIV_USER_UPDATE",
 					"PRIV_USER_DELETE",
 					"PRIV_TASK_CREATE",
-					"PRIV_TASK_READ"
-					"PRIV_TASK_UPDATE"
+					"PRIV_TASK_READ",
+					"PRIV_TASK_UPDATE",
 					"PRIV_TASK_DELETE"
 				]
 			});
@@ -48,8 +48,8 @@
 				"role": "USER", 
 				"privileges": [
 					"PRIV_TASK_CREATE",
-					"PRIV_TASK_READ"
-					"PRIV_TASK_UPDATE"
+					"PRIV_TASK_READ",
+					"PRIV_TASK_UPDATE",
 					"PRIV_TASK_DELETE"
 				] 
 			});
