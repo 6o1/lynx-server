@@ -25,10 +25,9 @@
 			// Admin user
 			db.user.insert({ 
 				"email" : "admin@example.com", 
-				"firstName": "Admin",
-				"lastName": "Admin", 
-				"passwordHash" : "$2a$10$sSyP5TaAZD7l5yXCMQoil.K3ghmRDyBksSHPDNjeJqB7AcIT14kum",
-				"enabled": true, 
+				"first_name": "Admin",
+				"last_name": "Admin", 
+				"password_hash" : "$2a$11$HXAibQbInqFpcxtgkJiHReTsYMS1dKEHH4ccpxwQYGbGCwo4maY9a",
 				"role": "ADMIN", 
 				"privileges": [
 					"PRIV_USER_CREATE",
@@ -41,10 +40,9 @@
 			// Test user
 			db.user.insert({ 
 				"email" : "user@example.com", 
-				"firstName": "Test", 
-				"lastName": "Test", 
-				"passwordHash" : "$2a$10$sSyP5TaAZD7l5yXCMQoil.K3ghmRDyBksSHPDNjeJqB7AcIT14kum",
-				"enabled": true, 
+				"first_name": "Test", 
+				"last_name": "Test", 
+				"password_hash" : "$2a$11$HXAibQbInqFpcxtgkJiHReTsYMS1dKEHH4ccpxwQYGbGCwo4maY9a",
 				"role": "USER", 
 				"privileges": [
 					"PRIV_TASK_CREATE",

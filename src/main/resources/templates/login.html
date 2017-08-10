@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html lang="tr" xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+	th:with="lang=${#locale.language}" th:lang="${lang}">
 <!--/*@thymesVar id="_csrf" type="org.springframework.security.web.csrf.CsrfToken"*/-->
 <!--/*@thymesVar id="error" type="java.util.Optional<String>"*/-->
 <head>
@@ -45,6 +47,8 @@
   <!-- /.login-box-body -->
 </div>
 <!-- /.login-box -->
+
+<p th:if="${error.isPresent()}">The email or password you have entered is invalid, try again.</p>
 
 <object th:include="fragments/scripts :: scripts" th:remove="tag"></object>
 <script>

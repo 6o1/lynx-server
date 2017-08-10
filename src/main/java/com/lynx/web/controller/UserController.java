@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
@@ -21,7 +22,6 @@ import com.lynx.domain.enums.Role;
 import com.lynx.domain.validator.UserFormValidator;
 import com.lynx.form.UserForm;
 import com.lynx.service.UserService;
-import com.lynx.util.LynxUtils;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -31,11 +31,13 @@ public class UserController {
 
 	private final UserService userService;
 	private final UserFormValidator formValidator;
+	private final BCryptPasswordEncoder encoder;
 
 	@Autowired
-	public UserController(UserService userService, UserFormValidator formValidator) {
+	public UserController(UserService userService, UserFormValidator formValidator, BCryptPasswordEncoder encoder) {
 		this.userService = userService;
 		this.formValidator = formValidator;
+		this.encoder = encoder;
 	}
 
 	@InitBinder("form")
@@ -89,7 +91,7 @@ public class UserController {
 
 	private User convertToEntity(UserForm form) {
 		return User.builder().email(form.getEmail()).firstName(form.getFirstName()).lastName(form.getLastName())
-				.phone(form.getPhone()).title(form.getTitle()).passwordHash(LynxUtils.encode(form.getPassword()))
+				.phone(form.getPhone()).title(form.getTitle()).passwordHash(encoder.encode(form.getPassword()))
 				.deleted(false).role(Role.USER).privileges(form.getPrivileges()).build();
 	}
 

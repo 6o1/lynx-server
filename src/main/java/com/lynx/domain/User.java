@@ -18,6 +18,8 @@ import lombok.Getter;
 @Getter
 public class User extends LynxBaseCollection {
 
+	private static final long serialVersionUID = 2436016958042573832L;
+
 	@Id
 	private String id;
 
