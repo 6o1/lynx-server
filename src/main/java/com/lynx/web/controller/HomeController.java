@@ -8,11 +8,17 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @Slf4j
 public class HomeController {
-	
-    @RequestMapping("/")
-    public String getHomePage() {
-        log.debug("Getting home page");
-        return "index";
-    }
+
+	@RequestMapping(path = { "/", "index" })
+	public String getIndexPage() {
+		log.debug("Getting home page");
+		return "redirect:/home";
+	}
+
+	@RequestMapping("/home")
+	public String getHomePage() {
+		log.debug("Getting home page");
+		return "home";
+	}
 
 }

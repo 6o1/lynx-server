@@ -48,16 +48,18 @@ public class UserController {
 	// @PreAuthorize("@currentUserServiceImpl.canAccessUser(principal, #id)")
 	@RequestMapping("/user/{id}")
 	public ModelAndView getUserPage(@PathVariable String id) {
+		// TODO get privileges
 		log.debug("Getting user page for user={}", id);
-		return new ModelAndView("user", "user", userService.getUserById(id)
+		return new ModelAndView("user/edit", "user", userService.getUserById(id)
 				.orElseThrow(() -> new NoSuchElementException(String.format("User=%s not found", id))));
 	}
 
 	// @PreAuthorize("hasPrivilege('READ_asdas')")
 	@RequestMapping(value = "/user/create", method = RequestMethod.GET)
 	public ModelAndView getUserCreatePage() {
+		// TODO get privileges
 		log.debug("Getting user create form");
-		return new ModelAndView("user_create", "form", new UserForm());
+		return new ModelAndView("user/create", "form", new UserForm());
 	}
 
 	// @PreAuthorize("hasAuthority('ADMIN')")
@@ -66,27 +68,23 @@ public class UserController {
 		log.debug("Processing user create form={}, bindingResult={}", form, bindingResult);
 		if (bindingResult.hasErrors()) {
 			// failed validation
-			return "user_create";
+			return "user/create";
 		}
 		try {
 			userService.create(convertToEntity(form));
 		} catch (DataIntegrityViolationException e) {
-			// probably email already exists - very rare case when multiple
-			// admins are adding same user
-			// at the same time and form validation has passed for more than one
-			// of them.
 			log.warn("Exception occurred when trying to save the user, assuming duplicate email", e);
 			bindingResult.reject("email.exists", "Email already exists");
-			return "user_create";
+			return "user/create";
 		}
 		// everything fine redirect to list
-		return "redirect:/users";
+		return "redirect:/user/list";
 	}
 
-	@RequestMapping("/users")
+	@RequestMapping("/user/list")
 	public ModelAndView getUsersPage() {
 		log.debug("Getting users page");
-		return new ModelAndView("users", "users", userService.getAllUsers());
+		return new ModelAndView("user/list", "users", userService.getAllUsers());
 	}
 
 	private User convertToEntity(UserForm form) {

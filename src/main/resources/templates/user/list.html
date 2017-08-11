@@ -13,13 +13,23 @@
 			<thead>
 				<tr>
 					<th>E-mail</th>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Phone</th>
+					<th>Title</th>
 					<th>Role</th>
+					<th>Privileges</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="user : ${users}">
 					<td><a th:href="${'/user/' + user.id}" th:text="${user.email}"></a></td>
+					<td th:text="${user.firstName}"></td>
+					<td th:text="${user.lastName}"></td>
+					<td th:text="${user.phone}"></td>
+					<td th:text="${user.title}"></td>
 					<td th:text="${user.role}"></td>
+					<td th:text="${user.privileges}"></td>
 				</tr>
 			</tbody>
 		</table>
